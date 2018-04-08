@@ -2,7 +2,7 @@ import { User } from './user.model';
 
 export class Workspace {
     id?: number;
-    owner: User;
+    owner?: number;
     title: string;
     members: User[];
 }
