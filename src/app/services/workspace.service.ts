@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Workspace } from '../models/workspace.model';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class WorkspaceService {
 
   constructor(
     private apiService: ApiService,
+    private authService: AuthService,
   ) { }
 
   getAll(): Observable<Workspace[]> {
@@ -19,6 +21,7 @@ export class WorkspaceService {
   }
 
   create(workspace: Workspace): Observable<Workspace> {
+    workspace.owner = this.authService.getUserId()
     return this.apiService.post<Workspace>('api/workspace/', workspace);
   }
 

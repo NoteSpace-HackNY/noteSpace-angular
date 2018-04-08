@@ -27,6 +27,13 @@ export class AuthService {
   }
 
 
+  getUserId(): number {
+    let x;
+    this.apiService.get<User>("api/auth/user/").subscribe((result) => x = result.id);
+    return x;
+  }
+
+
   logout(): void {
     this.token = undefined;
   }
