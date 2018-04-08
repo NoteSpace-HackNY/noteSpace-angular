@@ -28,4 +28,12 @@ export class ApiService {
     return this.httpClient.post<T>(this.api_base_url + path, data);
   }
 
+  put<T>(path: string, data: T): Observable<T> {
+    return this.httpClient.put<T>(this.api_base_url + path, data);
+  }
+
+  delete<T>(path: string): Observable<T> {
+    return this.httpClient.delete<T>(this.api_base_url + path)
+  }
+
 }
