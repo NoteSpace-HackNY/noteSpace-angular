@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { CardComponent } from './components/card/card.component';
+import { WorkspaceService } from './services/workspace.service';
+import { CardService } from './services/card.service';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { CardComponent } from './components/card/card.component';
   providers: [
     ApiService,
     AuthService,
+    WorkspaceService,
+    CardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
