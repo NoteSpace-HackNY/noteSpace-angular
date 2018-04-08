@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -18,22 +19,20 @@ export class AuthService {
     private apiService: ApiService,
   ) { }
 
-  login(username, password): boolean {
-    var success = false;
-    this.apiService.post<any>("api/auth/", {
+  login(username, password): Observable<any> {
+    return this.apiService.post<any>("api/auth/login/", {
       username: username,
       password: password,
-    }).subscribe((result) => {
-      if (result.token) {
-        success = true;
-        this.token = result.token;
-      }
     });
-    return success;
   }
 
 
   logout(): void {
     this.token = undefined;
   }
+
+  register(user: User): Observable<any> {
+    return this.apiService.post<any>("api/auth/registration", user);
+  }
+
 }
